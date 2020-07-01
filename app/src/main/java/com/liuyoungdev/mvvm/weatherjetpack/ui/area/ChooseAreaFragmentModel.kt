@@ -18,7 +18,7 @@ class ChooseAreaFragmentModel(private val repository: PlaceRepository) : ViewMod
     fun getProvinces() {
         currentLevel.value = LEVEL_PROVINCES
         isLoading.value = true
-        repository.getProvinceList()
+//        repository.getProvinceList()
 
 
     }
