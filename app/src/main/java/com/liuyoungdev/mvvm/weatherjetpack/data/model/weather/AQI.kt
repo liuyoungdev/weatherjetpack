@@ -1,4 +1,4 @@
-package com.liuyoungdev.mvvm.weatherjetpack.data.model
+package com.liuyoungdev.mvvm.weatherjetpack.data.model.weather
 
 /**
  * author： yang

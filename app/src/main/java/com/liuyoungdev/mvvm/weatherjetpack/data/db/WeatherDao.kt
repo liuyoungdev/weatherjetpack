@@ -3,7 +3,7 @@ package com.liuyoungdev.mvvm.weatherjetpack.data.db
 import android.preference.PreferenceManager
 import com.google.gson.Gson
 import com.liuyoungdev.mvvm.weatherjetpack.WeatherJetpackApplication
-import com.liuyoungdev.mvvm.weatherjetpack.data.model.Weather
+import com.liuyoungdev.mvvm.weatherjetpack.data.model.weather.Weather
 
 /**
  * author： yang

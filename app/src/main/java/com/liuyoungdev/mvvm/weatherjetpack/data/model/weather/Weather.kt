@@ -1,6 +1,7 @@
-package com.liuyoungdev.mvvm.weatherjetpack.data.model
+package com.liuyoungdev.mvvm.weatherjetpack.data.model.weather
 
 import com.google.gson.annotations.SerializedName
+import com.liuyoungdev.mvvm.weatherjetpack.data.model.weather.*
 
 /**
  * author： yang
