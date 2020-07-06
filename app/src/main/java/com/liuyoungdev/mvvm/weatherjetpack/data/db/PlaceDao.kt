@@ -6,6 +6,9 @@ import org.litepal.LitePal
 class PlaceDao {
 
     fun getProvinceList(): MutableList<Province> = LitePal.findAll(Province::class.java)
+    fun saveProvinceList(list: MutableList<Province>) {
+        LitePal.saveAll(list)
+    }
 
 
 }

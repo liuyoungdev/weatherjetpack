@@ -2,13 +2,18 @@ package com.liuyoungdev.mvvm.weatherjetpack.data
 
 import com.liuyoungdev.mvvm.weatherjetpack.data.db.PlaceDao
 import com.liuyoungdev.mvvm.weatherjetpack.data.network.WeatherNetwork
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class PlaceRepository private constructor(private val placeDao: PlaceDao,private val network:WeatherNetwork) {
-    suspend fun getProvinceList() {
-        val list = placeDao.getProvinceList()
+
+    suspend fun getProvinceList() = withContext(Dispatchers.IO) {
+        var list = placeDao.getProvinceList()
         if (list == null) {
-            network.getProvinceList()
+            list = network.getProvinceList()
+            placeDao.saveProvinceList(list)
         }
+        list
 
     }
 
