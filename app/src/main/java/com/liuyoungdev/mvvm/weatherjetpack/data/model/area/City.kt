@@ -1,9 +1,8 @@
 package com.liuyoungdev.mvvm.weatherjetpack.data.model.area
-
 import com.google.gson.annotations.SerializedName
-import org.litepal.LitePal
 import org.litepal.crud.LitePalSupport
 
-class Province(@SerializedName("name") val provinceName:String,@SerializedName("id") val provinceCode: Int) : LitePalSupport() {
+class City ( @SerializedName("name") val cityName: String, @SerializedName("id") val cityCode: Int) : LitePalSupport() {
     @Transient val id = 0
+    var provinceId = 0
 }

@@ -1,5 +1,6 @@
 package com.liuyoungdev.mvvm.weatherjetpack.data.db
 
+import android.annotation.SuppressLint
 import android.preference.PreferenceManager
 import com.google.gson.Gson
 import com.liuyoungdev.mvvm.weatherjetpack.WeatherJetpackApplication
@@ -21,5 +22,30 @@ class WeatherDao {
         return null
 
 
+    }
+
+    fun saveWeatherInfo(weather: Weather) {
+        val weathers = Gson().toJson(weather)
+        val defaultSharedPreferences =
+            PreferenceManager.getDefaultSharedPreferences(WeatherJetpackApplication.context)
+        val editor = defaultSharedPreferences.edit()
+        editor.putString("weather", weathers)
+        editor.apply()
+    }
+
+    fun cachPicUrl(url: String) {
+        val defaultSharedPreferences =
+            PreferenceManager.getDefaultSharedPreferences(WeatherJetpackApplication.context)
+        val editor = defaultSharedPreferences.edit()
+        editor.putString("bindpic", url)
+        editor.apply()
+
+    }
+
+    fun getBindPic(): String? {
+        val url = PreferenceManager.getDefaultSharedPreferences(WeatherJetpackApplication.context)
+            .getString("bindpic", null)
+
+        return url
     }
 }

@@ -6,9 +6,9 @@
     <version value="1" />
 
     <list>
-        <mapping class="com.liuyoungdev.mvvm.weatherjetpack.data.model.area.province" />
-<!--        <mapping class="com.coolweather.android.db.City" />-->
-<!--        <mapping class="com.coolweather.android.db.County" />-->
+        <mapping class="com.liuyoungdev.mvvm.weatherjetpack.data.model.area.Province" />
+        <mapping class="com.liuyoungdev.mvvm.weatherjetpack.data.model.area.City" />
+        <mapping class="com.liuyoungdev.mvvm.weatherjetpack.data.model.area.County" />
     </list>
-
+    <storage value="external" />
 </litepal>

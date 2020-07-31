@@ -1,6 +1,10 @@
 package com.liuyoungdev.mvvm.weatherjetpack.data.network
 
+import android.util.Log
+import androidx.lifecycle.MutableLiveData
+import com.liuyoungdev.mvvm.weatherjetpack.data.model.weather.HeWeather
 import com.liuyoungdev.mvvm.weatherjetpack.data.network.api.PlaceService
+import com.liuyoungdev.mvvm.weatherjetpack.data.network.api.WeatherService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,7 +19,18 @@ import kotlin.coroutines.suspendCoroutine
 class WeatherNetwork {
 
     private val placeService = ServerCreator.create(PlaceService::class.java)
-    suspend fun getProvinceList() = placeService.getProvince().await()
+
+    private val weatherService = ServerCreator.create(WeatherService::class.java)
+
+    suspend fun fetchProvinceList() = placeService.getProvince().await()
+    suspend fun fetchCityList(provinceCode: Int) = placeService.getCities(provinceCode).await()
+    suspend fun fetchBindPic() = weatherService.getBindPic().await()
+
+    suspend fun getCounties(provinceCode: Int, cityCode: Int) =
+        placeService.getCounties(provinceCode, cityCode).await()
+
+    suspend fun requestWeatherInfo(weatherID: String) =
+        weatherService.getWeather(weatherID).await()
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
@@ -26,7 +41,8 @@ class WeatherNetwork {
 
                 override fun onResponse(call: Call<T>, response: Response<T>) {
                     val body = response.body()
-                    if (body!=null)continuation.resume(body)
+                    println("返回值" + body.toString())
+                    if (body != null) continuation.resume(body)
                     else continuation.resumeWithException(RuntimeException("response body is null"))
                 }
 

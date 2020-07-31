@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.liuyoungdev.mvvm.weatherjetpack.ui.weather.WeatherActivityModel" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            bind:loadPic="@{viewModel.bindPicUrl}" />
+
+        <androidx.drawerlayout.widget.DrawerLayout
+            android:id="@+id/drawerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swip"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                bind:OnRefreshListener="@{()->viewModel.refresh()}"
+                bind:refreshing="@{viewModel.refreshing}">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none"
+                    android:visibility="@{viewModel.weatherInitialized? View.VISIBLE : View.INVISIBLE}">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fitsSystemWindows="true"
+                        android:orientation="vertical">
+
+                        <include
+                            layout="@layout/title"
+                            bind:weather="@{viewModel.weather}" />
+
+                        <include
+                            layout="@layout/now"
+                            bind:weather="@{viewModel.weather}" />
+
+                        <include
+                            layout="@layout/forecast"
+                            bind:weather="@{viewModel.weather}" />
+
+
+                    </LinearLayout>
+                </ScrollView>
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+            <fragment
+                android:id="@+id/chooseAreaFragment"
+                android:name="com.liuyoungdev.mvvm.weatherjetpack.ui.area.ChooseAreaFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start" />
+        </androidx.drawerlayout.widget.DrawerLayout>
+    </FrameLayout>
+</layout>
