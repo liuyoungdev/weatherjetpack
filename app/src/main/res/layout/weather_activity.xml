@@ -2,6 +2,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:bind="http://schemas.android.com/apk/res-auto">
 
+    <!-- 使用databinding，报错找不到类，或者找不到 **BindingIml，大部分原因都是xml布局引起的，
+         无论是xml写错了，还是引用的数据报错-->
     <data>
 
         <import type="android.view.View" />
@@ -54,6 +56,8 @@
                             layout="@layout/now"
                             bind:weather="@{viewModel.weather}" />
 
+                        <!-- xml布局中使用include+databinding，bind：name = "@{viewModel.name}"-->
+                        <!-- bind:后面的名称要与后面引号中的名称一致-->
                         <include
                             layout="@layout/forecast"
                             bind:weather="@{viewModel.weather}" />

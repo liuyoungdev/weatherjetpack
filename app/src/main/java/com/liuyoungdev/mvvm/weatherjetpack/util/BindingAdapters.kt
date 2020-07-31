@@ -15,7 +15,7 @@ import com.liuyoungdev.mvvm.weatherjetpack.databinding.ForecastItemBinding
  * author： yang
  * date  ： 2020-07-28
  */
-
+//kotlin中使用注解BindingAdapter需要build.gradle中添加kapt支持
 @BindingAdapter("bind:loadPic")
 fun ImageView.loadBingPic(url: String?) {
     if (url != null) Glide.with(context).load(url).into(this)
